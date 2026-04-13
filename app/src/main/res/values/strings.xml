@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">Read &amp; Watch</string>
+    <string name="read_amp_watch"><![CDATA[Read & Watch]]></string>
+    <string name="correo_electr_nico">Correo Electrónico</string>
+    <string name="bienvenido">¡Bienvenido!</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="iniciar_sesion">Inicia sesión para continuar"</string>
+    <string name="reestablecer_contrase_a">Restablecer contraseña</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="nombre_de_usuario">Nombre de usuario</string>
+    <string name="elige_un_nombre_de_usuario">Elige un nombre de usuario</string>
+    <string name="registrar">Registrar</string>
+    <string name="confirmar_contrase_a">Confirmar contraseña</string>
+    <string name="escribe_nuevamente_tu_contrase_a">Confirma contraseña</string>
+    <string name="crear_cuenta_usuario">Crear cuenta de usuario</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="reg_strate_para_continuar">Regístrate para continuar</string>
+    <string name="bot_n_para_volver">Botón para volver</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recuperar_contrase_a">Recuperar contraseña</string>
+    <string name="por_favor_ingresa">Por favor, ingresa lo siguiente:</string>
+    <string name="ejemplo_correo_com">ejemplo@correo.com</string>
+    <string name="informaci_n_personal">Información personal</string>
+    <string name="ingresa_los_siguientes_datos_para_tu_perfil">Ingresa los siguientes datos para tu perfil</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido_paterno">Apellido Paterno</string>
+    <string name="apellido_materno">Apellido Materno</string>
+    <string name="tel_fono">Teléfono</string>
+    <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
+    <string name="enviar_informaci_n">Enviar información</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
 </resources>
