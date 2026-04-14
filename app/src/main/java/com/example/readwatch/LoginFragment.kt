@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.readwatch.databinding.FragmentLoginBinding
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? =
         null //? es opcional, esa variable puede existir o no en memoria
     private val binding get() = _binding!!
+    private val viewModel by viewModels<SignInViewModel>()
 
     //binding: puente de enlace para acceder a los elementos de la pantalla
     override fun onCreate(savedInstanceState: Bundle?) {
