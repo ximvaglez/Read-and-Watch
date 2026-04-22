@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.readwatch.core.FragmentCommunicator
 import com.example.readwatch.databinding.FragmentLoginBinding
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? =
         null //? es opcional, esa variable puede existir o no en memoria
     private val binding get() = _binding!!
     private val viewModel by viewModels<SignInViewModel>()
+
+    private lateinit var communicator: FragmentCommunicator
 
     //binding: puente de enlace para acceder a los elementos de la pantalla
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +29,8 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        communicator=requireActivity() as FragmentCommunicator
+        communicator.manageLoader(true)
         setupValidation()
         binding.btnLogin.setOnClickListener {
             findNavController().navigate(R.id.registerFragment)
