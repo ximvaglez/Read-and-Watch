@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
         communicator.manageLoader(true)
         setupValidation()
         binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.registerFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
         return binding.root
     }

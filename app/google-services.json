@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "838072362202",
+    "project_id": "readwatch-32a8f",
+    "storage_bucket": "readwatch-32a8f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838072362202:android:d14770a01d1dd289eb31e3",
+        "android_client_info": {
+          "package_name": "com.example.readwatch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZVtMJWjXcTN5_6xVPT2RWZxSj2XaE_uA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import com.example.readwatch.core.FragmentCommunicator
 import com.example.readwatch.databinding.ActivityMainBinding
 
@@ -26,6 +27,6 @@ class MainActivity : AppCompatActivity(), FragmentCommunicator {
     }
 
     override fun manageLoader(isVisible: Boolean) {
-        TODO("Not yet implemented")
+        binding.loaderView.isVisible = isVisible
     }
 }
