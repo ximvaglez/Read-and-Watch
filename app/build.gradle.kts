@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.firebase)
 }
-
 android {
     namespace = "com.example.readwatch"
     compileSdk {

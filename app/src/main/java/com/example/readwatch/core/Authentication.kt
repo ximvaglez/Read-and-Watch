@@ -1,5 +1,4 @@
 package com.example.readwatch.core
-
 import com.google.firebase.auth.FirebaseUser
 
 interface Authentication {

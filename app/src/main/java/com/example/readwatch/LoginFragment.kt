@@ -43,7 +43,6 @@ class LoginFragment : Fragment() {
 
         return binding.root
     }
-
     //función para validar los datos
     private fun setupValidation() {
         binding.btnLogin.isEnabled = false
