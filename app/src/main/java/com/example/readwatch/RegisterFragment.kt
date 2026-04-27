@@ -18,9 +18,9 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        binding.signInButton.setOnClickListener {
-            viewModel.requestSignUp(binding.emailTiet.text.toString().trim(),
-                binding.passwordTiet.text.toString().trim())
+        binding.btnRegister.setOnClickListener {
+            viewModel.requestSignUp(binding.etEmailRegister.text.toString().trim(),
+                binding.etPasswordRegister.text.toString().trim())
         }
         return binding.root
     }
