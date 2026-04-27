@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".registerFragment">
+    tools:context=".RegisterFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -65,6 +65,7 @@
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/passwordTil"
         android:id="@+id/tilName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -77,6 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/guideline">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,6 +87,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/passwordTil"
         android:id="@+id/tilEmailRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -97,6 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tilName">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
             android:id="@+id/etEmailRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,6 +109,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/passwordTil"
         android:id="@+id/tilPasswordRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -118,6 +123,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
             android:id="@+id/etPasswordRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,7 +133,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegister"
-        style="@style/MainButton"
+        style="@style/signUpButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

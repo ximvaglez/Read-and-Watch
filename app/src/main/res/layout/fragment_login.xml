@@ -54,6 +54,7 @@
     </LinearLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/passwordTil"
         android:id="@+id/tilEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -66,6 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/guideline">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,6 +76,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/passwordTil"
         android:id="@+id/tilPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -86,6 +89,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,7 +98,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        style="@style/MainButton"
+        style="@style/signUpButton"
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -108,6 +112,7 @@
         />
 
     <TextView
+        style="@style/signInLabel"
         android:id="@+id/tvCreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,6 +125,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        style="@style/signInLabel"
         android:id="@+id/tvResetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

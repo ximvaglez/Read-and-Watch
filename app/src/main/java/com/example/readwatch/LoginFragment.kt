@@ -32,9 +32,15 @@ class LoginFragment : Fragment() {
         communicator=requireActivity() as FragmentCommunicator
         communicator.manageLoader(true)
         setupValidation()
+
         binding.btnLogin.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
+
+        binding.registerText.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
         return binding.root
     }
 
