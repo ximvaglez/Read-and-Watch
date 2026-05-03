@@ -2,6 +2,10 @@ package com.example.readwatch.core
 
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
@@ -14,25 +18,34 @@ class AuthRepository(): Authentication {
     override suspend fun requestLogin(
         email: String,
         password: String
-    ): FirebaseUser? {
-        return try {
+    ): ResponseService<FirebaseUser> = withContext(Dispatchers.IO) {
+        try {
             val result = auth.signInWithEmailAndPassword(email, password).await()
-            result.user
-        } catch (e: Exception) {
-            Log.e("Error", "${e.printStackTrace()}")
-            null
-        }
+            result.user?.let {ResponseService.Success(it)}
+                ?: ResponseService.Error("Usuario no encontrado")
+            } catch (e: FirebaseAuthInvalidCredentialsException) {
+                 ResponseService.Error("Correo o contraseña incorrectos")
+            } catch (e: FirebaseAuthException){
+                 ResponseService.Error(e.localizedMessage)
+            } catch (e: Exception) {
+                ResponseService.Error("Error inesperado, intentalo más tarde")
+            }
     }
+
     override suspend fun requestSignUp(
         email: String,
         password: String
-    ): FirebaseUser? {
-        return try {
+    ): ResponseService<FirebaseUser> = withContext(Dispatchers.IO) {
+        try {
             val result = auth.createUserWithEmailAndPassword(email, password).await()
-            result.user
+            result.user?.let { ResponseService.Success(it) }
+                ?: ResponseService.Error("No se pudo crear el usuario")
+        } catch (e: FirebaseAuthUserCollisionException) {
+            ResponseService.Error("Este correo ya esta registrado, intenta ccn otro")
+        } catch (e: FirebaseAuthWeakPasswordException) {
+            ResponseService.Error("La contraseña es muy debil")
         } catch (e: Exception) {
-            Log.e("Error", "\${e.printStackTrace()}")
-            null
+            ResponseService.Error("Error inesperado. Intenta de nuevo")
         }
     }
 }

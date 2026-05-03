@@ -30,6 +30,7 @@
     <string name="tel_fono">Teléfono</string>
     <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
     <string name="enviar_informaci_n">Enviar información</string>
+    <string name="ya_tienes_cuenta_inicia_sesi_n">¿Ya tienes cuenta? Inicia sesión</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

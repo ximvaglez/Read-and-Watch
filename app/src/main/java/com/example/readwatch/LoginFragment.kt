@@ -10,6 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.readwatch.core.FragmentCommunicator
 import com.example.readwatch.databinding.FragmentLoginBinding
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.example.readwatch.core.ResponseService
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
+
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? =
         null //? es opcional, esa variable puede existir o no en memoria
@@ -29,48 +36,66 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        communicator=requireActivity() as FragmentCommunicator
-        communicator.manageLoader(true)
+        communicator = requireActivity() as FragmentCommunicator
         setupValidation()
+        setUpClickListeners()
+        observeState()
+        return binding.root
+    }
 
-        binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+    //función para validar los datos
+    private fun setupValidation() {
+        binding.signInButton.isEnabled = false
+        binding.emailTiet.addTextChangedListener {
+            validateAndEnable()
         }
+        binding.passwordTiet.addTextChangedListener {
+            validateAndEnable()
+        }
+    }
 
+    private fun validateAndEnable() {
+        val email = binding.emailTiet.text.toString().trim()
+        val password = binding.passwordTiet.text.toString().trim()
+
+        binding.emailTil.error = viewModel.validateEmail(email)
+        binding.passwordTil.error = viewModel.validatePassword(password)
+        binding.signInButton.isEnabled = viewModel.isLoginFormValid(email, password)
+       }
+
+    private fun setUpClickListeners() {
+        binding.signInButton.setOnClickListener {
+            val email= binding.emailTiet.text.toString().trim()
+            val password = binding.passwordTiet.text.toString().trim()
+            viewModel.requestLogin(email, password)
+        }
         binding.registerText.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
-
-        return binding.root
     }
-    //función para validar los datos
-    private fun setupValidation() {
-        binding.btnLogin.isEnabled = false
-        binding.etEmail.addTextChangedListener {
-            validateFields()
+
+    private fun observeState(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.signInState.collect{
+                    state -> when(state){
+                        is ResponseService.Loading ->{
+                            communicator.manageLoader(true)
+                            binding.signInButton.isEnabled = false
+                        }
+                        is ResponseService.Success ->{
+                            communicator.manageLoader(false)
+                        }
+                        is ResponseService.Error -> {
+                            communicator.manageLoader(false)
+                            binding.signInButton.isEnabled = true
+                            Snackbar.make(binding.root, state.error, Snackbar.LENGTH_LONG).show()
+                        }
+                    null -> Unit
+                    }
+                }
+            }
         }
-        binding.etPassword.addTextChangedListener {
-            validateFields()
-        }
-    }
-
-    private fun validateFields() {
-        val email = binding.etEmail.text.toString().trim()
-        val password = binding.etPassword.text.toString().trim()
-
-        val isEmailValid = isValidEmail(email)
-        val isPasswordValid = password.length >= 8
-
-        binding.tilEmail.error = if (email.isNotEmpty() || isEmailValid) null else "Correo invalido"
-
-        binding.tilPassword.error =
-            if (password.isEmpty() || isPasswordValid) null else "Mínimo 8 caracteres"
-
-        binding.btnLogin.isEnabled = email.isNotEmpty() && password.isNotEmpty() && isEmailValid && isPasswordValid
-    }
-
-    private fun isValidEmail(email: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }
 

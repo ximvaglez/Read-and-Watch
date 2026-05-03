@@ -55,7 +55,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/passwordTil"
-        android:id="@+id/tilEmail"
+        android:id="@+id/emailTil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -68,7 +68,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/passwordTiet"
-            android:id="@+id/etEmail"
+            android:id="@+id/emailTiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/correo_electr_nico"
@@ -77,36 +77,36 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/passwordTil"
-        android:id="@+id/tilPassword"
+        android:id="@+id/passwordTil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/tilEmail"
+        app:layout_constraintTop_toBottomOf="@+id/emailTil"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/passwordTiet"
-            android:id="@+id/etPassword"
+            android:id="@+id/passwordTiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
+            android:hint="@string/contrase_a"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         style="@style/signUpButton"
-        android:id="@+id/btnLogin"
+        android:id="@+id/signInButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/ingresar"
-        app:layout_constraintTop_toBottomOf="@+id/tilPassword"
+        app:layout_constraintTop_toBottomOf="@+id/passwordTil"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
