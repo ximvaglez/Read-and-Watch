@@ -1,21 +1,26 @@
-package com.example.readwatch
+package com.example.readwatch.onboarding.signIn
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.example.readwatch.core.FragmentCommunicator
-import com.example.readwatch.databinding.FragmentLoginBinding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.example.readwatch.R
+import com.example.readwatch.onboarding.signIn.SignInViewModel
+import com.example.readwatch.core.FragmentCommunicator
 import com.example.readwatch.core.ResponseService
+import com.example.readwatch.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import com.example.readwatch.home.HomeActivity
+
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? =
@@ -85,6 +90,10 @@ class LoginFragment : Fragment() {
                         }
                         is ResponseService.Success ->{
                             communicator.manageLoader(false)
+                            val intent = Intent(requireContext(), HomeActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+
                         }
                         is ResponseService.Error -> {
                             communicator.manageLoader(false)
@@ -98,6 +107,3 @@ class LoginFragment : Fragment() {
         }
     }
 }
-
-
-

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/BooksFragment">
+
+    <fragment
+        android:id="@+id/BooksFragment"
+        android:name="com.example.readwatch.home.books.BooksFragment"
+        android:label="fragment_books"
+        tools:layout="@layout/fragment_books" />
+    <fragment
+        android:id="@+id/AccountFragment"
+        android:name="com.example.readwatch.home.account.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/MoviesFragment"
+        android:name="com.example.readwatch.home.movies.MoviesFragment"
+        android:label="fragment_movies"
+        tools:layout="@layout/fragment_movies" />
+
+</navigation>

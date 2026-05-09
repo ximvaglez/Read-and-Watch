@@ -25,12 +25,14 @@
     <string name="informaci_n_personal">Información personal</string>
     <string name="ingresa_los_siguientes_datos_para_tu_perfil">Ingresa los siguientes datos para tu perfil</string>
     <string name="nombre">Nombre</string>
-    <string name="apellido_paterno">Apellido Paterno</string>
-    <string name="apellido_materno">Apellido Materno</string>
+    <string name="apellidos">Apellidos</string>
     <string name="tel_fono">Teléfono</string>
     <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
-    <string name="enviar_informaci_n">Enviar información</string>
+    <string name="save">Guardar información</string>
     <string name="ya_tienes_cuenta_inicia_sesi_n">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="home">Home</string>
+    <string name="movies">Movies</string>
+    <string name="account">Account</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

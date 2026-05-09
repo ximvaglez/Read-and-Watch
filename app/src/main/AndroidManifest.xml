@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReadWatch">
         <activity
-            android:name=".MainActivity"
+            android:name=".home.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".onboarding.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

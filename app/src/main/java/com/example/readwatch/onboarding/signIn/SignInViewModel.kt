@@ -1,21 +1,20 @@
-package com.example.readwatch
+package com.example.readwatch.onboarding.signIn
+
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.readwatch.core.AuthRepository
-import com.example.readwatch.core.Authentication
 import com.example.readwatch.core.ResponseService
-import kotlinx.coroutines.launch
-import android.util.Patterns
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class SignInViewModel: ViewModel()  {
     val repository = AuthRepository()
 
-    private val _signInState = MutableStateFlow <ResponseService<FirebaseUser>?>(null)
+    private val _signInState = MutableStateFlow<ResponseService<FirebaseUser>?>(null)
 
     val signInState: StateFlow<ResponseService<FirebaseUser>?> = _signInState.asStateFlow()
 
@@ -40,6 +39,7 @@ class SignInViewModel: ViewModel()  {
     // --- Operación de login ---
     fun requestLogin(email: String, password: String) {
         viewModelScope.launch {
+            //--- lanzan los eventos y el LoginFragment los recibe---
             _signInState.value = ResponseService.Loading
             _signInState.value = repository.requestLogin(email, password)
         }

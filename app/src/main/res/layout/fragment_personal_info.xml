@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_fondo"
-    tools:context=".PersonalInfoFragment">
+    tools:context=".onboarding.personalInfo.PersonalInfoFragment">
 
     <TextView
         android:id="@+id/tvTitlePersonal"
@@ -33,8 +33,8 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitlePersonal" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilFirstName"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/firstNameTil"
+        style="@style/passwordTil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -46,120 +46,112 @@
         app:layout_constraintTop_toBottomOf="@+id/tvSubtitlePersonal">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
+            android:id="@+id/firstNameTiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilLastNameP"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/lastNameTil"
+        style="@style/passwordTil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:hint="@string/apellido_paterno"
+        android:hint="@string/apellidos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilFirstName">
+        app:layout_constraintTop_toBottomOf="@+id/firstNameTil">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
+            android:id="@+id/lastNameTiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilLastNameM"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/usernameTil"
+        style="@style/passwordTil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:hint="@string/apellido_materno"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilLastNameP">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilUsername"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:hint="@string/nombre_de_usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilLastNameM">
+        app:layout_constraintTop_toBottomOf="@+id/lastNameTil">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
+            android:id="@+id/usernameTiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPhone"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/phoneTil"
+        style="@style/passwordTil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:hint="@string/tel_fono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilUsername">
+        app:layout_constraintTop_toBottomOf="@+id/usernameTil">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
+            android:id="@+id/phoneTiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilBirthDate"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/birthDateTil"
+        style="@style/passwordTil"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:hint="@string/fecha_de_nacimiento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilPhone">
+        app:layout_constraintTop_toBottomOf="@+id/phoneTil">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/passwordTiet"
+            android:id="@+id/birthDateTiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSendInfo"
+        android:id="@+id/saveButton"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="#0FD903"
-        android:text="@string/enviar_informaci_n"
+        android:text="@string/save"
         android:textColor="#004301"
         android:textStyle="bold"
         app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilBirthDate" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.readwatch.signup
+package com.example.readwatch.onboarding.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

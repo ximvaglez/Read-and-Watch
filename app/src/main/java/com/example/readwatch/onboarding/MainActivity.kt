@@ -1,13 +1,17 @@
-package com.example.readwatch
+package com.example.readwatch.onboarding
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import com.example.readwatch.R
 import com.example.readwatch.core.FragmentCommunicator
 import com.example.readwatch.databinding.ActivityMainBinding
+import com.example.readwatch.home.HomeActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity(), FragmentCommunicator {
     private lateinit var binding: ActivityMainBinding
