@@ -70,6 +70,9 @@ class RegisterFragment : Fragment() {
         binding.registerText.setOnClickListener {
             findNavController().navigateUp()
         }
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun observeState() {
