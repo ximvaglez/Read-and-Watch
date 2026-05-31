@@ -33,6 +33,7 @@
     <string name="home">Home</string>
     <string name="movies">Movies</string>
     <string name="account">Account</string>
+    <string name="books">Books</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

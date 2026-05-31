@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id= "@+id/BooksFragment"
-        android:icon= "@drawable/home_ic"
-        android:title="@string/home" />
+        android:icon= "@drawable/book_ic"
+        android:title="@string/books" />
 
     <item
         android:id= "@+id/MoviesFragment"

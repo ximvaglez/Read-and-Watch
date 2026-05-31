@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.books.BooksFragment"
-    android:background="@color/black">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- Lista de libros-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBooks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:paddingBottom="80dp"
+        android:paddingTop="90dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/searchbar_scrolling_view_behavior"/>
 
-</FrameLayout>
+    <!-- Barra que siempre se va a ver-->
+    <com.google.android.material.search.SearchBar
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buscar libros..."/>
+
+    <!--Barra que aparece al tocar la barra -->
+    <com.google.android.material.search.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Buscar libros..."
+        app:layout_anchor="@id/searchBar"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
