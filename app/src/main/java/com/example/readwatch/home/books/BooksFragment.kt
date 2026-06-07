@@ -9,12 +9,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.readwatch.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.readwatch.core.FragmentCommunicator
 import com.example.readwatch.core.ResponseService
 import com.example.readwatch.databinding.FragmentBooksBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import androidx.navigation.fragment.findNavController
 
 class BooksFragment : Fragment() {
 
@@ -27,9 +29,14 @@ class BooksFragment : Fragment() {
 
     private val adapter = BooksAdapter { book ->
 
-        // Aquí después puedes abrir una pantalla de detalle
-        // o guardar el libro en Firebase
+        val bundle = Bundle().apply {
+            putParcelable("book", book)
+        }
 
+        findNavController().navigate(
+            R.id.action_BooksFragment_to_bookDetailFragment,
+            bundle
+        )
     }
 
     override fun onCreateView(
