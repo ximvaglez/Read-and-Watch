@@ -5,10 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.readwatch.core.ResponseService
 import com.example.readwatch.core.model.BookItem
+import com.example.readwatch.core.repositories.UserRepository
 import com.example.readwatch.databinding.FragmentBookDetailBinding
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 class BookDetailFragment : Fragment() {
 
@@ -88,6 +94,29 @@ class BookDetailFragment : Fragment() {
                 binding.tvToggleDescription.text = "Ver más"
             }
         }
+        binding.btnFavorite.setOnClickListener {
+            val uid = FirebaseAuth.getInstance().currentUser?.uid
+            if (uid == null) {
+                Snackbar.make(binding.root, "Inicia sesión primero",
+                    Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                val result = UserRepository().saveFavoriteBook(uid, book)
+
+                when (result) {
+                    is ResponseService.Success ->
+                        Snackbar.make(binding.root, "📚 Libro guardado",
+                            Snackbar.LENGTH_SHORT).show()
+                    is ResponseService.Error ->
+                        Snackbar.make(binding.root, result.error,
+                            Snackbar.LENGTH_SHORT).show()
+                    else -> Unit
+                }
+            }
+        }
+
 
     }
 

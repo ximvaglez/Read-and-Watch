@@ -7,8 +7,13 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 
 object ApiClient {
+    //libros
         private const val BASE_URL = "https://www.googleapis.com/books/v1/"
         const val API_KEY = "AIzaSyDCgILSJA1BWZousPt4VnNgmpcJtul3q_g"
+    //peliculas
+        private const val OMDB_BASE_URL = "https://www.omdbapi.com/"
+        const val OMDB_API_KEY = "ed9d1ab6"
+
 
         private val logging = HttpLoggingInterceptor().apply{
             level = HttpLoggingInterceptor.Level.BODY
@@ -26,4 +31,13 @@ object ApiClient {
                 .build()
                 .create(BookAPI::class.java)
         }
+    val movieApi: MovieAPI by lazy {
+        Retrofit.Builder()
+            .baseUrl(OMDB_BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MovieAPI::class.java)
+    }
+
 }

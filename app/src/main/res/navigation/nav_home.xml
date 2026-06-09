@@ -13,7 +13,21 @@
         <action
             android:id="@+id/action_BooksFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
+        <action
+            android:id="@+id/action_BooksFragment_to_savedBookDetailFragment"
+            app:destination="@id/savedBookDetailFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/savedBookDetailFragment"
+        android:name="com.example.readwatch.home.savedBook.SavedBookDetailFragment"
+        android:label="fragment_saved_book_detail"
+        tools:layout="@layout/fragment_saved_book_detail">
+        <argument
+            android:name="savedBook"
+            app:argType="com.example.readwatch.core.model.SavedBook"/>
+    </fragment>
+
     <fragment
         android:id="@+id/AccountFragment"
         android:name="com.example.readwatch.home.account.AccountFragment"
@@ -23,7 +37,34 @@
         android:id="@+id/MoviesFragment"
         android:name="com.example.readwatch.home.movies.MoviesFragment"
         android:label="fragment_movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/action_MoviesFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment"/>
+        <action android:id="@+id/action_MoviesFragment_to_savedMovieDetailFragment"
+            app:destination="@id/savedMovieDetailFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/savedMovieDetailFragment"
+        android:name="com.example.readwatch.home.savedMovie.SavedMovieDetailFragment"
+        android:label="fragment_saved_movie_detail"
+        tools:layout="@layout/fragment_saved_movie_detail">
+        <argument
+            android:name="savedMovie"
+            app:argType="com.example.readwatch.core.model.SavedMovie"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.example.readwatch.home.movieDetail.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            android:name="movie"
+            app:argType="com.example.readwatch.core.model.MovieItem"/>
+    </fragment>
+
     <fragment
         android:id="@+id/bookDetailFragment"
         android:name="com.example.readwatch.home.bookDetail.BookDetailFragment"

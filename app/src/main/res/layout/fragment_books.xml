@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Lista de libros-->
+    <!-- RecyclerView de búsqueda (lista) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBooks"
         android:layout_width="match_parent"
@@ -13,16 +13,46 @@
         android:paddingBottom="80dp"
         android:paddingTop="90dp"
         android:clipToPadding="false"
+        android:visibility="gone"
         app:layout_behavior="@string/searchbar_scrolling_view_behavior"/>
 
-    <!-- Barra que siempre se va a ver-->
+    <!-- Sección biblioteca (grid 2 columnas) -->
+    <LinearLayout
+        android:id="@+id/layoutLibrary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="90dp"
+        android:paddingBottom="80dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_behavior="@string/searchbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/tvLibraryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tu biblioteca"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLibrary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"/>
+
+    </LinearLayout>
+
+    <!-- SearchBar siempre visible -->
     <com.google.android.material.search.SearchBar
         android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Buscar libros..."/>
 
-    <!--Barra que aparece al tocar la barra -->
+    <!-- SearchView al tocar la barra -->
     <com.google.android.material.search.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
