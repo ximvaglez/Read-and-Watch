@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.ReadWatch" parent="Base.Theme.ReadWatch" />
+
+    <style name="RoundedBookCover">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
 </resources>

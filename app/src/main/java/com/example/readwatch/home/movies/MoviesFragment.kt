@@ -1,60 +1,143 @@
 package com.example.readwatch.home.movies
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.readwatch.core.FragmentCommunicator
+import com.example.readwatch.core.ResponseService
+import com.example.readwatch.databinding.FragmentMoviesBinding
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 import com.example.readwatch.R
+import androidx.navigation.fragment.findNavController
+import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.readwatch.home.savedMovie.MovieLibraryAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MoviesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MoviesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentMoviesBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel by viewModels<MoviesViewModel>()
+    private lateinit var communicator: FragmentCommunicator
+
+    private val searchAdapter = MoviesAdapter { movie ->
+        val bundle = Bundle().apply { putParcelable("movie", movie) }
+        findNavController().navigate(
+            R.id.action_MoviesFragment_to_movieDetailFragment, bundle)
+    }
+
+    private val libraryAdapter = MovieLibraryAdapter { savedMovie ->
+        val bundle = Bundle().apply { putParcelable("savedMovie", savedMovie) }
+        findNavController().navigate(
+            R.id.action_MoviesFragment_to_savedMovieDetailFragment, bundle
+        )
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies, container, false)
-    }
+    ): View {
+        _binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        communicator = requireActivity() as FragmentCommunicator
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MoviesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MoviesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        binding.rvMovies.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvMovies.adapter = searchAdapter
+
+        binding.rvMovieLibrary.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvMovieLibrary.adapter = libraryAdapter
+
+        binding.searchView.setupWithSearchBar(binding.searchBar)
+
+        binding.searchView.editText.setOnEditorActionListener { _, _, _ ->
+            val query = binding.searchView.text.toString()
+            if (query.isNotBlank()) {
+                binding.searchBar.setText(query)
+                binding.searchView.hide()
+                showSearchResults()
+                viewModel.searchMovies(query)
+            }
+            false
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    when {
+                        binding.searchView.isShowing -> binding.searchView.hide()
+                        binding.rvMovies.isVisible -> showLibrary()
+                        else -> {
+                            isEnabled = false
+                            requireActivity().onBackPressedDispatcher.onBackPressed()
+                        }
+                    }
                 }
             }
+        )
+
+        viewModel.loadLibrary()
+        observeState()
+        return binding.root
+    }
+
+    private fun showSearchResults() {
+        binding.rvMovies.visibility = View.VISIBLE
+        binding.layoutMovieLibrary.visibility = View.GONE
+    }
+
+    private fun showLibrary() {
+        binding.rvMovies.visibility = View.GONE
+        binding.layoutMovieLibrary.visibility = View.VISIBLE
+        binding.searchBar.setText("")
+        searchAdapter.submitList(emptyList())
+    }
+
+    private fun observeState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                launch {
+                    viewModel.movieState.collect { state ->
+                        when (state) {
+                            is ResponseService.Loading ->
+                                communicator.manageLoader(true)
+                            is ResponseService.Success -> {
+                                communicator.manageLoader(false)
+                                searchAdapter.submitList(state.value)
+                            }
+                            is ResponseService.Error -> {
+                                communicator.manageLoader(false)
+                                Snackbar.make(binding.root, state.error,
+                                    Snackbar.LENGTH_LONG).show()
+                            }
+                            null -> {}
+                        }
+                    }
+                }
+
+                launch {
+                    viewModel.libraryState.collect { state ->
+                        if (state is ResponseService.Success) {
+                            libraryAdapter.submitList(state.value)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

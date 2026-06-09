@@ -1,14 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.firebase)
+    alias(libs.plugins.kotlin.parcelize)
 }
+
 android {
     namespace = "com.example.readwatch"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.readwatch"
@@ -33,8 +32,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
     buildFeatures{
-        viewBinding=true
+        viewBinding = true
     }
 }
 
@@ -58,8 +61,8 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
 
-    implementation (libs.retrofit)
+    implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
-    implementation (libs.okhttp.logging)
+    implementation(libs.okhttp.logging)
     implementation(libs.glide)
 }
